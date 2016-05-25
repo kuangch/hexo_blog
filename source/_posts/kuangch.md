@@ -1,15 +1,30 @@
 
-title: 新的开始
-date: 2014-05-07 18:44:12
+title: self-introduction
+date: 2016-05-26 18:44:12
 tags:
-- 开始
-categories: 日志
+- 简介
+categories: 个人
 ---
 
-这是**新的开始**，我用hexo创建了第一篇文章。
+Let's take a knowledge about **ME**.
 
-通过下面的命令，就可以创建新文章
-```{bash}
-D:\workspace\javascript\nodejs-hexo>hexo new 新的开始
-[info] File created at D:\workspace\javascript\nodejs-hexo\source\_posts\新的开始.md
-```
+### who I am
+Kuang Chenhui.
+
+### where I am from
+Wuhan.Hubei
+
+### my hobby
+movie, sport, fitness，coding
+
+### my job
+software engineer
+
+### skilled
+Java, Android，HTML5， JavaScript，Node.js...
+
+### surprise
+
+![me](/imgs/kuang.png)
+
+yeh, is me !
