@@ -1,0 +1,19 @@
+menu:
+  主页: /
+  归档: /archives
+
+logo: KUANG
+
+more:
+  Github: http://github.com/kuangch/
+  关于我: http://techkuang.top
+
+about:
+  title: kuangch
+  link: http://techkuang.top
+
+disqus_shortname:
+
+excerpt_num: 120
+
+footer_info: © kuang 2016
