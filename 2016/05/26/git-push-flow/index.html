@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>真实工作中Git提交流程</title>
+  <meta name="author" content="Kuangch">
+   <meta name="description" content="说明关于git的使用方法，命令什么的，这些在网上的资料一大堆，没有必要赘述。我只就真实的公司开发环境下的使用写出我的使用经验。（我公司老板冲Vmware带出来的经验之谈，比较规范）
+流程
+在code-review结束后我们才能提交代码（code-review后续会讲）
+本地master分支更新远端g">
+  
+
+  <meta property="og:title" content="真实工作中Git提交流程"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        真实工作中Git提交流程
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-05-26T13:39:14.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-05-26
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/工具/">工具</a>
+
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/tags/git/">git</a>
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>关于git的使用方法，命令什么的，这些在网上的资料一大堆，没有必要赘述。我只就真实的公司开发环境下的使用写出我的使用经验。（我公司老板冲Vmware带出来的经验之谈，比较规范）</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ul>
+<li>在code-review结束后我们才能提交代码（code-review后续会讲）</li>
+<li>本地master分支更新远端git最新代码</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git status</span><br><span class="line"><span class="comment"># 当本地master分支落后于远端master分支时，执行下列语句</span></span><br><span class="line">git pull</span><br><span class="line">git checkout your_working_branch</span><br><span class="line">git rebase master</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将your_working_branch压缩为一个commit</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span>  <span class="comment"># 查看log数目</span></span><br><span class="line">git rebase -i HEAD~合并的数目</span><br><span class="line">HEAD_Former..HEAD_Later</span><br></pre></td></tr></table></figure>
+<ul>
+<li>给合成的commit写注释</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;summary&gt;</span><br><span class="line">Description:</span><br><span class="line">    xxxx</span><br><span class="line">Testing Done:</span><br><span class="line">    xxxx</span><br><span class="line">Reviewed By: kuangch, sunhe</span><br><span class="line">Approved By: kuangch, sunhe</span><br><span class="line">Bug Number: xxxx</span><br><span class="line">Review Board ID: xxxx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将your_working_branch合并到主分支上</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge your_working_branch</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将代码提交</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ul>
+<li>“ship-it” 恭喜你code-review被虐结束</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git status</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看远端分支是否有新的提交，如果有新的提交，则执行下列代码更新</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br><span class="line">git checkout kuangch</span><br><span class="line">git rebase master</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将sunhe分支的commit合为1个</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 例如如下所示，有两个提交</span></span><br><span class="line"><span class="comment"># hash1:659ea22XXX</span></span><br><span class="line"><span class="comment"># second</span></span><br><span class="line"><span class="comment"># hash2:78c0e12XXX</span></span><br><span class="line"><span class="comment"># third</span></span><br><span class="line"></span><br><span class="line">git rebase -i HEAD~2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 会显示如下两条记录</span></span><br><span class="line"><span class="comment"># pick 659ea22 second</span></span><br><span class="line"><span class="comment"># pick 78c0e12 third</span></span><br><span class="line"><span class="comment"># 将底下的pick改为s</span></span><br><span class="line"><span class="comment"># wq即会切换到comment界面</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#加入如下评论（包括，提交简述，修改描述，测试信息，代码审阅人，bugid，reviewBoardID）</span></span><br><span class="line"> adding upload_client.py and recv_server.py to implement transportation between <span class="built_in">local</span> and center</span><br><span class="line"></span><br><span class="line"> Description:</span><br><span class="line">     It is a transportation module between <span class="built_in">local</span> and center.</span><br><span class="line">     1. When RGBD <span class="built_in">source</span> that have been compressed is prepared,</span><br><span class="line">     upload_client.py will send it to the center. At the same time, info of</span><br><span class="line">     collector will be send as well.</span><br><span class="line">     2. recv_server.py will receive all the data client send, and update</span><br><span class="line">     all the info to the center database.</span><br><span class="line"></span><br><span class="line"> Testing Done:</span><br><span class="line">     there are <span class="built_in">test</span>_server.py and <span class="built_in">test</span>_client.py</span><br><span class="line">     please run:</span><br><span class="line">     1.nosetests <span class="_">-s</span> --with-coverage <span class="built_in">test</span>_server.py &amp;</span><br><span class="line">     2.nosetests <span class="_">-s</span> --with-coverage <span class="built_in">test</span>_client.py</span><br><span class="line"></span><br><span class="line">     <span class="built_in">test</span> result:</span><br><span class="line">     All <span class="built_in">test</span> <span class="keyword">case</span> pass</span><br><span class="line"></span><br><span class="line">     coverage result:</span><br><span class="line">     Name                               Stmts   Miss  Cover</span><br><span class="line">     transform_constant                    31      1    97%</span><br><span class="line">     upload_client                         97     24    75%</span><br><span class="line">     recv_server                           85     36    58%</span><br><span class="line"></span><br><span class="line"> Reviewed By: hulei, kuangch</span><br><span class="line"> Approved By: hulei, kuangch</span><br><span class="line"> Bug Number: 2</span><br><span class="line"> Review Board ID: 4</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将your_working_branch合并到主分支上</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge kuangch</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将代码提交到远端</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+    <div class="firstrow">
+        <a href="#top" >
+        <i class="fa fa-arrow-right"></i>
+        </a>
+        © kuang 2016
+    </div>
+    <div class="secondrow">
+        <a href="http://techkuang.top">
+        kuangch
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    (scrolled + height + 50 > offsetTop) ? current.addClass("animation"):'';
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(document).ready(revealOnScroll)
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
+
+</body>
+</html>
