@@ -1,5 +1,5 @@
 
-title: self-introduction
+title: Self-Introduction
 date: 2016-05-26 18:44:12
 tags:
 - 简介
@@ -8,23 +8,23 @@ categories: 个人
 
 Let's take a knowledge about **ME**.
 
-### who I am
+- ### who am I
 Kuang Chenhui.
 
-### where I am from
+- ### where I am from
 Wuhan.Hubei
 
-### my hobby
-movie, sport, fitness，coding
+- ### my hobby
+movie, science, fitness, swimming, coding, make money...
 
-### my job
+- ### my job
 software engineer
 
-### skilled
-Java, Android，HTML5， JavaScript，Node.js...
+- ### skilled
+Java, Android, HTML5, JavaScript, Node.js...
 
-### surprise
+- ### surprise
 
 ![me](/imgs/kuang.png)
 
-yeh, is me !
+Right, it's me !
