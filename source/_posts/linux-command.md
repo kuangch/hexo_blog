@@ -5,6 +5,29 @@ tags:
 - 命令
 categories: Linux
 ---
+
+#### 常用
+``` bash
+# 内核版本
+cat /proc/version
+uname -a
+uname -r
+
+# 系统版本
+lsb_release -a
+cat/etc/issue
+
+# cpu信息
+cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+
+# 内存信息
+cat /proc/meminfo
+
+# 内存，进程占用，
+free
+top
+
+```
 #### 监听一个目录下指定类型文件的个数
 例如：查看/xxx/目录下*.jpg文件的个数，并监听(一秒间隔)变化
 ``` bash
