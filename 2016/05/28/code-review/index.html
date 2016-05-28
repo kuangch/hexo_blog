@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>发布code review</title>
+  <meta name="author" content="Kuangch">
+   <meta name="description" content="准备条件
+Git 和 Review Board 关联
+review 和 Bugzilla 关联
+
+生成diff文件
+明确起始commit 然后生成一个基于这两个commit之间的diff文件，首先查看提交信息获取起始commit的hash值如下：
+
+$ git log
+commit dd483a4f">
+  
+
+  <meta property="og:title" content="发布code review"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Kblog"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link rel="alternate" href="/atom.xml" title="Kblog" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        发布code review
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-05-28T06:18:28.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-05-28
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/工具/">工具</a>
+
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/tags/review/">review</a>
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h3 id="准备条件"><a href="#准备条件" class="headerlink" title="准备条件"></a>准备条件</h3><ul>
+<li>Git 和 Review Board 关联</li>
+<li>review 和 Bugzilla 关联</li>
+</ul>
+<h3 id="生成diff文件"><a href="#生成diff文件" class="headerlink" title="生成diff文件"></a>生成diff文件</h3><blockquote>
+<p>明确起始commit 然后生成一个基于这两个commit之间的diff文件，首先查看提交信息获取起始commit的hash值如下：</p>
+</blockquote>
+<pre><code>$ git log
+commit dd483a4f44a3d962d9cd886108c5aea7239b483c
+Author: gitlab &lt;gitlab@loongmian.com&gt;
+Date:   Sat May 28 11:25:34 2016 +0800
+
+test2
+
+commit 1fd3aa6996d395accb5fa633200a87895c45c9f3
+Author: gitlab &lt;gitlab@loongmian.com&gt;
+Date:   Sat May 28 11:24:54 2016 +0800
+
+test
+</code></pre><p>我们选生成<code>test</code>到<code>test2</code>之间的diff文件使用如下命令</p>
+<pre><code># ./diff.diff 为自己自定的diff保存位置
+# 1fd3aa 和 dd483分别为test 和test2 连个commit对应的hash值
+$ git diff 1fd3aa..dd483 &gt; ./diff.diff
+</code></pre><p>这样，在当前目录上一级目录下将生成一个名为diff.diff文件</p>
+<h3 id="提交Bug信息"><a href="#提交Bug信息" class="headerlink" title="提交Bug信息"></a>提交Bug信息</h3><blockquote>
+<p>我们生成了test 和 test2 连个commit之间的diff文件，这个两者之间改动的代码做了什么？ 完成了哪些功能？ 修复了哪些bug？ 需要记录到bugzilla中。加入我们的 test 和 test2之间是增加了一个“打电话”的功能。那么我们需要做如下操作</p>
+</blockquote>
+<ul>
+<li><p>打开 bugzill 主页（192.168.1.94）</p>
+<p><img src="/imgs/code_review/1.jpg" alt=""></p>
+</li>
+<li><p>选择所属项目（这里假如我们做的是 TestProduct项目）</p>
+<p><img src="/imgs/code_review/2.jpg" alt=""></p>
+</li>
+<li><p>提交 bug，提交bug后会得到这个bug的bugId 如下：</p>
+<p><img src="/imgs/code_review/3.jpg" alt=""></p>
+</li>
+</ul>
+<h3 id="提交code-review"><a href="#提交code-review" class="headerlink" title="提交code review"></a>提交code review</h3><blockquote>
+<p>经过以上两部以后 我们现在又一个diff文件，又一个 Bug ID，有了这些我们就可以发布code review了。具体流程如下：</p>
+</blockquote>
+<ul>
+<li><p>打开review board （192.168.1.96:8081）</p>
+<p><img src="/imgs/code_review/4.jpg" alt=""></p>
+</li>
+</ul>
+<p>按上图顺序操作（由于演示，review board没有TestProject项目，我随便选的，真实情况下只要保证选择的是同一个项目就行）然后选择我们第一步生成的diff文件，如下图：</p>
+<p> <img src="/imgs/code_review/5.jpg" alt=""></p>
+<p>点击打开后将会跳转到如下界面：</p>
+<p> <img src="/imgs/code_review/6.jpg" alt=""></p>
+<p>图中标红框为必点内容，线面分别对这些内容简单说明：</p>
+<ul>
+<li><strong>概要</strong>：描述这次需要比人review的代码做了哪些事情，做个简要描述，注意概述的格式为<code>[项目名称][版本号][分支名] 概要内容</code></li>
+<li><strong>详细说明</strong>：概要描述不足以体现更多的内容。详细说明可以详细介绍</li>
+<li><strong>单元测试说明</strong>：填写单元测试的覆盖率，通过率..如果没有单元测试请说明原因，或简要说明</li>
+<li><strong>分支名</strong>：通过code review 后要提交到仓库的分支，一般为<code>master</code></li>
+<li><strong>Bug ID</strong>：这次代码变化，提交的bug的 bug Id</li>
+<li><strong>reviewer</strong>：指定你需要对你代码进行code review的人</li>
+</ul>
+<p>确保所有的信息无误点击绿色框标出的ok 按钮，最后点击publish按钮完成code review的提交</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+    <div class="firstrow">
+        <a href="#top" >
+        <i class="fa fa-arrow-right"></i>
+        </a>
+        © kuang 2016
+    </div>
+    <div class="secondrow">
+        <a href="http://techkuang.top">
+        kuangch
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    (scrolled + height + 50 > offsetTop) ? current.addClass("animation"):'';
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(document).ready(revealOnScroll)
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
+
+</body>
+</html>
