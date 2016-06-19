@@ -23,6 +23,9 @@ cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 # 内存信息
 cat /proc/meminfo
 
+# 硬盘信息
+df -h
+
 # 内存，进程占用，
 free
 top
