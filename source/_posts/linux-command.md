@@ -53,3 +53,11 @@ find /xxx -iname "*.jpg"
   vim /etc/ld.so.conf.d/openni.conf
   # 编辑输入："path of ypur library"
   ```
+
+#### 防火墙打开80端口
+刚安装好nginx无法站外访问，本机wget、telnet都正常。而服务器之外，不管是局域网的其它主机还是互联网的主机都无法访问站点。
+如果是以上的故障现象，很可能是被CentOS的防火墙把80端口拦住了，尝试执行以下命令，打开80端口：
+``` bash
+iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+```
+
