@@ -50,7 +50,7 @@
       <ul class="dropdown-content">
 
           
-           <li><a href="/categories/工具/">工具</a></li><li><a href="/categories/Linux/">Linux</a></li><li><a href="/categories/个人/">个人</a></li>
+           <li><a href="/categories/Linux/">Linux</a></li><li><a href="/categories/经验/">经验</a></li><li><a href="/categories/工具/">工具</a></li><li><a href="/categories/Python/">Python</a></li><li><a href="/categories/个人/">个人</a></li>
 
       </ul>
     </li>
@@ -87,6 +87,229 @@
   </div>
 </nav></nav>
 <ul class="posts">
+  
+    
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2016/06/29/python-module-import/">
+            python 导入模块详解
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    当我们在要导入的模块和当前python在文件同一目录下123app|\__ python1.py|___ python2.py
+  要在python2中导入python1模块只需：
+1from python1 import *
+
+当我们在要
+  
+  <a href="/2016/06/29/python-module-import/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2016-06-29T13:50:45.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  06-29
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Python/">Python</a>
+
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/tags/模块导入/">模块导入</a>
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
+
+  
+    
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2016/06/26/centos7-install-nginx/">
+            在centOS7中安装nginx防火墙设置问题
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    问题描述在centOS7安装nginx后，不能访问nginx。由于防火墙关闭了80端口。
+解决方式一1iptables -A INPUT -p tcp --dport 21 -j ACCEPT
+重启系统后配置还原了，80端口依然墙了，尝试修
+  
+  <a href="/2016/06/26/centos7-install-nginx/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2016-06-26T11:50:45.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  06-26
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Linux/">Linux</a>
+
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/tags/nginx/">nginx</a>·<a href="/tags/centOS7/">centOS7</a>
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
+
+  
+    
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2016/06/04/experience-graceful-code/">
+            优雅的写代码
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    代码精简
+尽量减少if else的使用，使得代码跟你家精简优雅（可能降低阅读性）
+  例如：递归写一个字符串反转的小程序
+
+  常规写法：
+1234567function reverseStr(str)&#123;    if(str)&#
+  
+  <a href="/2016/06/04/experience-graceful-code/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2016-06-04T03:36:54.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  06-04
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/经验/">经验</a>
+
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/tags/优雅代码/">优雅代码</a>
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
+
+  
+    
+<div>
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2016/05/30/linux-command/">
+            开发中使用的Linux命令
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    常用123456789101112131415161718192021# 内核版本cat /proc/versionuname -auname -r# 系统版本lsb_release -acat/etc/issue# cpu信息cat /p
+  
+  <a href="/2016/05/30/linux-command/">
+    更多
+  </a>
+  </div>
+  <div class="index-meta">
+    
+<time datetime="2016-05-30T11:50:45.000Z" itemprop="datePublished">
+  <i class="fa fa-calendar"></i>&nbsp;
+  05-30
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Linux/">Linux</a>
+
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/tags/命令/">命令</a>
+
+
+  </div>
+</li>
+</div>
+<hr>
+
+
+
+
   
     
 <div>
@@ -244,59 +467,6 @@ review 和 Bugzilla 关联
     &nbsp;
     <i class="fa fa-tag"></i>&nbsp;
     <a href="/tags/git/">git</a>
-
-
-  </div>
-</li>
-</div>
-<hr>
-
-
-
-
-  
-    
-<div>
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
-        <a href="/2016/05/26/linux-command/">
-            开发中使用的Linux命令
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    常用123456789101112131415161718192021# 内核版本cat /proc/versionuname -auname -r# 系统版本lsb_release -acat/etc/issue# cpu信息cat /p
-  
-  <a href="/2016/05/26/linux-command/">
-    更多
-  </a>
-  </div>
-  <div class="index-meta">
-    
-<time datetime="2016-05-26T11:50:45.000Z" itemprop="datePublished">
-  <i class="fa fa-calendar"></i>&nbsp;
-  05-26
-</time>
-
-
-
-    
-    &nbsp;
-    <i class="fa fa-tag"></i>&nbsp;
-    <a href="/categories/Linux/">Linux</a>
-
-
-
-
-    
-    &nbsp;
-    <i class="fa fa-tag"></i>&nbsp;
-    <a href="/tags/命令/">命令</a>
 
 
   </div>

@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>python 导入模块详解</title>
+  <meta name="author" content="Kuangch">
+   <meta name="description" content="当我们在要导入的模块和当前python在文件同一目录下123app|\__ python1.py|___ python2.py
+  要在python2中导入python1模块只需：
+1from python1 import *
+
+当我们在要导入的模块在当前文件的同一目录下的目录中1234app|\_">
+  
+
+  <meta property="og:title" content="python 导入模块详解"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Kblog"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link rel="alternate" href="/atom.xml" title="Kblog" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        python 导入模块详解
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-06-29T13:50:45.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-06-29
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/Python/">Python</a>
+
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/tags/模块导入/">模块导入</a>
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <ul>
+<li><h4 id="当我们在要导入的模块和当前python在文件同一目录下"><a href="#当我们在要导入的模块和当前python在文件同一目录下" class="headerlink" title="当我们在要导入的模块和当前python在文件同一目录下"></a>当我们在要导入的模块和当前python在文件同一目录下</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app</span><br><span class="line">|\__ python1.py</span><br><span class="line">|___ python2.py</span><br></pre></td></tr></table></figure>
+<p>  要在python2中导入python1模块只需：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> python1 <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="当我们在要导入的模块在当前文件的同一目录下的目录中"><a href="#当我们在要导入的模块在当前文件的同一目录下的目录中" class="headerlink" title="当我们在要导入的模块在当前文件的同一目录下的目录中"></a>当我们在要导入的模块在当前文件的同一目录下的目录中</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app</span><br><span class="line">|\__ module1</span><br><span class="line">|   |__ python1.py</span><br><span class="line">|___ python2.py</span><br></pre></td></tr></table></figure>
+<p>  要在python2中导入python1模块需要：在module1目录下创建一个 <code>__init__.py</code> 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app</span><br><span class="line">|\__module1</span><br><span class="line">|   |__ __init__.py</span><br><span class="line">|   |__ python1.py</span><br><span class="line">|___ python2.py</span><br></pre></td></tr></table></figure>
+<p>  然后导入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> module1.python1 <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="init-py作用"><a href="#init-py作用" class="headerlink" title="init.py作用"></a><font color="red"><strong>init</strong>.py作用</font></h4><ul>
+<li>python的每个模块的包中必须有一个<strong>init</strong>.py文件，才能导入这个目录下的module</li>
+<li><p>在<strong>init</strong>.py 里面还是可以有内容的，我们在导入一个包时，实际上导入了它的<strong>init</strong>.py文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app</span><br><span class="line">|\__module1</span><br><span class="line">|   |__ __init__.py</span><br><span class="line">|   |__ python1.py</span><br><span class="line">|   |__ python2.py</span><br><span class="line">|___ python2.py</span><br></pre></td></tr></table></figure>
+<p>在<strong>init</strong>.py文件中写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> python1</span><br><span class="line"><span class="keyword">import</span> python2</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line"><span class="keyword">from</span> python1 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> python2 <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+<p>这样，当我们导入<code>module1</code> 这个包的时候<code>__init__.py</code>文件自动运行。帮我们导入了这么多个模块，我们就不需要将所有的import语句写在一个文件里了，也可以减少代码量。不需要一个个去导入module了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> module1 <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文件<code>__init__.py</code> 中还有一个重要的变量，叫做<font color="red"><code>__all__</code></font>。我们有时会使出一招“全部导入”，也就是这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> module1 <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+<p>这时 import 就会把注册在包<code>__init__.py</code> 文件中<code>__all__</code> 列表中的子模块和子包导入到当前作用域中来。比如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#文件 __init__.py</span></span><br><span class="line">__all__ = [<span class="string">"module1"</span>, <span class="string">"python1"</span>, <span class="string">"python2"</span>]</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+    <div class="firstrow">
+        <a href="#top" >
+        <i class="fa fa-arrow-right"></i>
+        </a>
+        © kuang 2016
+    </div>
+    <div class="secondrow">
+        <a href="http://techkuang.top">
+        kuangch
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    (scrolled + height + 50 > offsetTop) ? current.addClass("animation"):'';
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(document).ready(revealOnScroll)
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
+
+</body>
+</html>
