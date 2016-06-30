@@ -38,9 +38,9 @@ app
 from module1.python1 import *
 ```
 
-- #### <font color=red>__init__.py作用</font>
-    - python的每个模块的包中必须有一个__init__.py文件，才能导入这个目录下的module
-    - 在__init__.py 里面还是可以有内容的，我们在导入一个包时，实际上导入了它的__init__.py文件
+- #### <font color=red>`__init__.py`的作用</font>
+    - python的每个模块的包中必须有一个`__init__.py`文件，才能导入这个目录下的module
+    - 在`__init__.py` 里面还是可以有内容的，我们在导入一个包时，实际上导入了它的`__init__.py`文件
     ```
     app
     |\__module1
@@ -50,7 +50,7 @@ from module1.python1 import *
     |___ python2.py
     ```
 
-    在__init__.py文件中写
+    在`__init__.py`文件中写
     ``` python
         import python1
         import python2
@@ -72,3 +72,50 @@ from module1.python1 import *
     #文件 __init__.py
     __all__ = ["module1", "python1", "python2"]
     ```
+
+- #### <font color=red>`__all__` 的作用</font>
+    - 列出模块中要导出的类，函数，变量等成员变量，避免命名冲突
+    > 在模块(*.py)中使用意为导出__all__列表里的类、函数、变量等成员，
+    否则将导出modualA中所有不以下划线开头（私有）的成员，
+    在模块中使用__all__属性可避免在相互引用时的命名冲突
+
+    ``` python
+    # modualA.py
+
+    import os
+    import sys
+
+    def fun1():
+        pass
+
+    def fun2():
+        pass
+
+    def class1:
+        pass
+
+    __all__=["fun1","class1"]
+
+    # 使用：
+    from modualA import *
+
+    # 这时只能使用fun1不能使用fun2,并且排除了 os, sys
+    ```
+
+    - 列出包里面导出的模块
+        > 在包(假设pkgA，pkgA是一个文件夹)的 `__init__.py` 中意为导出包里的模块
+
+        ``` python
+        # pkgA/__init__.py
+
+        from modualA import class1,class2
+        from modualB import fun1,class3
+
+        __all__=["modualA","modualB"]
+
+
+        # 使用：
+        from pkgA import *
+        ```
+        以上语句即执行了pkgA下的 `__init__.py` ，导入两个模块，和这两模块下的函数和类
+        按照 PEP8 建议的风格，`__all__` 应该写在所有 import 语句下面，和函数、常量等模块成员定义的上面。
