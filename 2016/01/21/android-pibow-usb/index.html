@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>树莓派的无法USB调式</title>
+  <meta name="author" content="Kuangch">
+   <meta name="description" content="问题简介：由于香蕉派某芯片停产，要换为使用树莓派，但是树莓派连接电脑调试时，数据线插入电脑一直没有反应。折腾了半天无果，（下载驱动，360手机助手，豌豆荚都试过了）。
+找到原因：和做硬件的哥们请教了一下，发现是端口默认设置成了OTG模式，导致无法连接数据线调试。
+解决方案：1234567891011">
+  
+
+  <meta property="og:title" content="树莓派的无法USB调式"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Kblog"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link rel="alternate" href="/atom.xml" title="Kblog" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        树莓派的无法USB调式
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-01-21T09:28:19.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-01-21
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/android/">android</a>
+
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/tags/树莓派/">树莓派</a>·<a href="/tags/USB/">USB</a>
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h2 id="问题简介："><a href="#问题简介：" class="headerlink" title="问题简介："></a>问题简介：</h2><p>由于香蕉派某芯片停产，要换为使用树莓派，但是树莓派连接电脑调试时，数据线插入电脑一直没有反应。<br>折腾了半天无果，（下载驱动，360手机助手，豌豆荚都试过了）。</p>
+<h2 id="找到原因："><a href="#找到原因：" class="headerlink" title="找到原因："></a>找到原因：</h2><p>和做硬件的哥们请教了一下，发现是端口默认设置成了OTG模式，导致无法连接数据线调试。</p>
+<h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">change2usb</span><span class="params">()</span></span>&#123;</span><br><span class="line">        File fileOTG = <span class="keyword">new</span> File(<span class="string">"/sys/devices/platform/sunxi_otg/otg_role"</span>);</span><br><span class="line">        File fileUDC = <span class="keyword">new</span> File(<span class="string">"/sys/bus/platform/devices/sunxi_usb_udc/otg_role"</span>);</span><br><span class="line">        <span class="keyword">if</span>(fileOTG.exists()) &#123;</span><br><span class="line">            Log.i(<span class="string">"USB_SWITCH"</span>, <span class="string">"note is /sys/devices/platform/sunxi_otg/otg_role"</span>);</span><br><span class="line">            usb_role = <span class="string">"/sys/devices/platform/sunxi_otg/otg_role"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(fileUDC.exists()) &#123;</span><br><span class="line">            Log.i(<span class="string">"USB_SWITCH"</span>, <span class="string">"note is /sys/bus/platform/devices/sunxi_usb_udc/otg_role"</span>);</span><br><span class="line">            usb_role = <span class="string">"/sys/bus/platform/devices/sunxi_usb_udc/otg_role"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            state = execCommand(<span class="string">"cat "</span> + usb_role);</span><br><span class="line">        &#125; <span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Log.i(<span class="string">"USB_SWITCH"</span>, <span class="string">"try to set usb as device"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            FileWriter wr = <span class="keyword">new</span> FileWriter(usb_role);</span><br><span class="line">            wr.write(<span class="string">"2"</span>);</span><br><span class="line">            wr.close();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">            Log.i(<span class="string">"USB_SWITCH"</span>, <span class="string">" write \"  error: "</span> + e.getMessage());</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Log.i(<span class="string">"USB_SWITCH"</span>, <span class="string">"try to set usb as host"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            FileWriter wr = <span class="keyword">new</span> FileWriter(usb_role);</span><br><span class="line">            wr.write(<span class="string">"1"</span>);</span><br><span class="line">            wr.close();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">            Log.i(<span class="string">"USB_SWITCH"</span>, <span class="string">" write \"  error: "</span> + e.getMessage());</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">execCommand</span><span class="params">(String command)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Runtime runtime = Runtime.getRuntime();</span><br><span class="line">    Process proc = runtime.exec(command);</span><br><span class="line">    InputStream inputstream = proc.getInputStream();</span><br><span class="line">    InputStreamReader inputstreamreader = <span class="keyword">new</span> InputStreamReader(inputstream);</span><br><span class="line">    BufferedReader bufferedreader = <span class="keyword">new</span> BufferedReader(inputstreamreader);</span><br><span class="line">    <span class="keyword">while</span>(line != <span class="keyword">null</span>) &#123;</span><br><span class="line">        sb.append(line);</span><br><span class="line">        sb.append(<span class="number">0xa</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    Log.i(<span class="string">"USB_SWITCH"</span>, <span class="string">"exec \""</span> + command + <span class="string">"\""</span>);</span><br><span class="line">    Log.i(<span class="string">"USB_SWITCH"</span>, <span class="string">"output: "</span>.append((line)).toString());</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(proc.waitFor() != <span class="number">0</span>) &#123;</span><br><span class="line">            Log.e(<span class="string">"USB_SWITCH"</span>, <span class="string">"exec \""</span> + command + <span class="string">"\" fail! exit value = "</span> + proc.exitValue());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span>(InterruptedException e) &#123;</span><br><span class="line">        System.err.println(e);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="apk下载地址："><a href="#apk下载地址：" class="headerlink" title="apk下载地址："></a>apk下载地址：</h2><p><a href="http://pan.baidu.com/s/1dEdeR0t" target="_blank" rel="external">USBModeSwitch APK下载</a></p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+    <div class="firstrow">
+        <a href="#top" >
+        <i class="fa fa-arrow-right"></i>
+        </a>
+        © kuang 2016
+    </div>
+    <div class="secondrow">
+        <a href="http://techkuang.top">
+        kuangch
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    (scrolled + height + 50 > offsetTop) ? current.addClass("animation"):'';
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(document).ready(revealOnScroll)
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
+
+</body>
+</html>

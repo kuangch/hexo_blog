@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>Android appcompat-v7包引发的错误</title>
+  <meta name="author" content="Kuangch">
+   <meta name="description" content="环境：Android studio
+背景：
+我在向我的工程里面导入一个module的时候，报如下错误：Error:(2) Error retrieving parent for item: No resource found that matches the given name ‘android:">
+  
+
+  <meta property="og:title" content="Android appcompat-v7包引发的错误"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Kblog"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link rel="alternate" href="/atom.xml" title="Kblog" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        Android appcompat-v7包引发的错误
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2015-12-26T13:37:25.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2015-12-26
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/android/">android</a>
+
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/tags/appcompat-v7/">appcompat-v7</a>
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h3 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h3><p>Android studio</p>
+<h3 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h3><blockquote>
+<p>我在向我的工程里面导入一个module的时候，报如下错误：Error:(2) Error retrieving parent for item: No resource found that matches the given name ‘android:Widget.Material.Spinner.Underlined’.</p>
+</blockquote>
+<h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><p>我的项目用到的apache的网络请求，android6.0不支持。我将其编译版本设置成了android4.4.。使用的appcompatv7包是23.1.1比较新。导入module的时候不知道怎么回事就导致gradle一直报错。</p>
+<h3 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h3><p>误打误撞，发现吧工程的编译版本改回android6.0 gradle一下，没报appcompatv7包相关的错误，但是apache的http相关的报错，在次将工程的编译版本改回android4.4<br>gradle一下，神奇的都不报错了，不知道这是怎么回事。</p>
+<h3 id="2016-1-15日更新"><a href="#2016-1-15日更新" class="headerlink" title="2016-1-15日更新"></a>2016-1-15日更新</h3><blockquote>
+<p>可以通过使用apache的库来规避android6.0不支持apache网络框架的问题。在module的build.gradle的android{}中加入 useLibrary ‘org.apache.http.legacy’</p>
+</blockquote>
+<p>   <img src="/imgs/android/android_error_appcompatv7.png" alt=""></p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+    <div class="firstrow">
+        <a href="#top" >
+        <i class="fa fa-arrow-right"></i>
+        </a>
+        © kuang 2016
+    </div>
+    <div class="secondrow">
+        <a href="http://techkuang.top">
+        kuangch
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    (scrolled + height + 50 > offsetTop) ? current.addClass("animation"):'';
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(document).ready(revealOnScroll)
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
+
+</body>
+</html>
