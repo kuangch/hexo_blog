@@ -129,7 +129,14 @@
 </li>
 </ul>
 </li>
+<li><h4 id="导入的模块将拥有现有的上下文"><a href="#导入的模块将拥有现有的上下文" class="headerlink" title="导入的模块将拥有现有的上下文"></a>导入的模块将拥有现有的上下文</h4><blockquote>
+<p>在一个文件中导入一个模块，这个模块里面的运行上下文将会变成当前运行的python文件的上下文。<br>当运行模块自身，那么它的上下文就是自身所在的上下文。<br>如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 目录结构</span></span><br><span class="line">app</span><br><span class="line">|\__module1</span><br><span class="line">|   |__ __init__.py</span><br><span class="line">|   |__ python1.py</span><br><span class="line">|___ python2.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># python1.py</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">print(os.getcwd())</span><br><span class="line"></span><br><span class="line"><span class="comment"># python2.py</span></span><br><span class="line"><span class="keyword">from</span> module1.python1 *</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
 </ul>
+<p>运行 python1.py<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python python1.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># .../app/module1/</span></span><br></pre></td></tr></table></figure></p>
+<p>运行 python2.py<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python python2.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># .../app/</span></span><br></pre></td></tr></table></figure></p>
 
 
   </article>
