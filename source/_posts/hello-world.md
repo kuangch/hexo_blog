@@ -1,5 +1,6 @@
 ---
 title: How to use Hexo
+date: 2015-01-2 18:44:12
 tags:
 - hexo
 categories: 工具
