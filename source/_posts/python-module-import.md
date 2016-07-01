@@ -143,3 +143,38 @@ from module1.python1 import *
         ```
         以上语句即执行了pkgA下的 `__init__.py` ，导入两个模块，和这两模块下的函数和类
         按照 PEP8 建议的风格，`__all__` 应该写在所有 import 语句下面，和函数、常量等模块成员定义的上面。
+
+
+- #### <font color=red>被导入的模块的上下文取决于谁导入它</font>
+> 在一个文件中导入一个模块，这个模块里面的运行上下文将会变成当前运行的python文件的上下文。
+当运行模块自身，那么它的上下文就是自身所在的上下文。
+如：
+``` python
+# 目录结构
+app
+|\__module1
+|   |__ __init__.py
+|   |__ python1.py
+|___ python2.py
+
+# python1.py
+import os
+
+print(os.getcwd())
+
+# python2.py
+from module1.python1 import *
+```
+    运行 python1.py
+    ``` bash
+    python python1.py
+
+    # .../app/module1/
+    ```
+
+    运行 python2.py
+    ``` bash
+    python python2.py
+
+    # .../app/
+    ```
