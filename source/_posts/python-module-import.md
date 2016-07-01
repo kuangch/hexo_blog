@@ -38,6 +38,30 @@ app
 from module1.python1 import *
 ```
 
+- #### 当我们在要导入的模块在当前文件父目录的同一级目录下的目录中
+```
+app
+|\__ module1
+|   |__ python1.py
+|\__ module2
+|   |__ python2.py
+```
+    要在python2中导入python1模块需要：在module1目录下创建一个 `__init__.py` 文件
+```
+app
+|\__module1
+|   |__ __init__.py
+|   |__ python1.py
+|\__ module2
+|   |__ python2.py
+```
+    然后将父级目录添加到pthon模块搜索路径，在导入
+``` python
+import sys
+sys.path.append("..")
+from module1.python1 import *
+```
+
 - #### <font color=red>`__init__.py`的作用</font>
     - python的每个模块的包中必须有一个`__init__.py`文件，才能导入这个目录下的module
     - 在`__init__.py` 里面还是可以有内容的，我们在导入一个包时，实际上导入了它的`__init__.py`文件
