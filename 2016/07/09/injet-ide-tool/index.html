@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>Injet IDE 使用技巧</title>
+  <meta name="author" content="Kuangch">
+   <meta name="description" content="正则表达式批量替换
+我们在项目开发中经常遇到这样的情况，比如我以前是写java的，现在开始写python，大家知道在java中访问一个hashMap对象中的键值，我们都是用obj.key来获取，而在python中字典，不支持这种写法.而作为java老司机的我，在写python程序的时候很容易就写成如">
+  
+
+  <meta property="og:title" content="Injet IDE 使用技巧"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Kblog"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link rel="alternate" href="/atom.xml" title="Kblog" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times-circle-o"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        Injet IDE 使用技巧
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-07-09T13:37:25.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-07-09
+</time>
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/categories/工具/">工具</a>
+
+
+
+
+    
+    &nbsp;
+    <i class="fa fa-tag"></i>&nbsp;
+    <a href="/tags/injet/">injet</a>
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h3 id="正则表达式批量替换"><a href="#正则表达式批量替换" class="headerlink" title="正则表达式批量替换"></a>正则表达式批量替换</h3><blockquote>
+<p>我们在项目开发中经常遇到这样的情况，比如我以前是写java的，现在开始写python，大家知道在java中访问一个hashMap对象中的键值，我们都是用obj.key来获取，而在python中字典，不支持这种写法.而作为java老司机的我，在写python程序的时候很容易就写成如下：</p>
+</blockquote>
+<p><img src="/imgs/injet/ide_0.jpg" alt=""></p>
+<p>这时，我们发现要去一个个手动改简直不是人做的事情，喜欢偷懒的为自然回去寻找偷懒的办法，<br>想到以前学过正则表达式，如果发现cfg_data.dns_server,cfg_data.susppkg_ip, 要把他们都替换成cfg_data[‘dns_server’]这样的形式，观察发现只需要把.dns_server,变成[‘dns_server’],所以取出. 和 ，之间的内容插入到[‘…’]中间，即可，用正则表达式如此简单：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 匹配所有 cfg.data.dns_server,类型的字符串</span></span><br><span class="line">cfg_data\.(.*?),</span><br><span class="line"><span class="comment"># 替换成 cfg.data['dns_server']类型的字符串</span></span><br><span class="line">cfg_data[<span class="variable">$1</span>],</span><br></pre></td></tr></table></figure></p>
+<p><img src="/imgs/injet/ide_1.jpg" alt=""></p>
+<h3 id="大功告成"><a href="#大功告成" class="headerlink" title="大功告成:"></a>大功告成:</h3><p><img src="/imgs/injet/ide_2.jpg" alt=""></p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+    <div class="firstrow">
+        <a href="#top" >
+        <i class="fa fa-arrow-right"></i>
+        </a>
+        © kuang 2016
+    </div>
+    <div class="secondrow">
+        <a href="http://techkuang.top">
+        kuangch
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// comments below to disable loading animation
+function revealOnScroll() {
+  var scrolled = $(window).scrollTop();
+  $(".excerpt, .index-title, .index-meta, p").each(function() {
+    var current = $(this),
+      height = $(window).outerHeight(),
+      offsetTop = current.offset().top;
+    (scrolled + height + 50 > offsetTop) ? current.addClass("animation"):'';
+  });
+}
+$(window).on("scroll", revealOnScroll);
+$(document).ready(revealOnScroll)
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+// back to top scripts
+$("a[href='#top']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, 500);
+  return false;
+});
+</script>
+
+</body>
+</html>
